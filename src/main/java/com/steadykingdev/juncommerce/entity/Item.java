@@ -16,11 +16,13 @@ public class Item {
     private Long id;
     private String brand;
     private String itemName;
-    private String size;
-    private int price;
+    private String itemSize;
+    private int itemPrice;
     private int stockQuantity;
 
-
+    public Item(String itemName) {
+        this.itemName = itemName;
+    } // 임시로 만든 생성자 함수
 
     public void addStock(int quantity) {
         this.stockQuantity += quantity;
