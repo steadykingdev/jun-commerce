@@ -26,9 +26,9 @@ public class InitDb {
         private final EntityManager em;
 
         public void dbInit1() {
-            Item item1 = new Item("t");
-            Item item2 = new Item("b");
-            Item item3 = new Item("s");
+            Item item1 = new Item("스톤아일랜드", "티",500000);
+            Item item2 = new Item("준", "바지",15000);
+            Item item3 = new Item("리복","신발",50000);
             em.persist(item1);
             em.persist(item2);
             em.persist(item3);
