@@ -1,5 +1,7 @@
 package com.steadykingdev.juncommerce.service;
 
+import com.steadykingdev.juncommerce.dto.ItemRequestDto;
+import com.steadykingdev.juncommerce.dto.ItemResponseDto;
 import com.steadykingdev.juncommerce.entity.Item;
 import com.steadykingdev.juncommerce.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,19 +17,19 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
+    public List<ItemResponseDto> findItems() {
+        return itemRepository.findAllItems();
+    }
+
+    public ItemResponseDto findOne(Long itemId) {
+        return itemRepository.findItemDtoById(itemId);
+    }
+
     @Transactional
-    public void saveItem(Item item) {
-        itemRepository.save(item);
+    public ItemResponseDto saveItem(ItemRequestDto itemDto) {
+        Item savedItem = itemRepository.save(itemDto.toEntity());
+        return ItemResponseDto.from(savedItem);
     }
-
-    public List<Item> findItems() {
-        return itemRepository.findAll();
-    }
-
-    public Item findOne(Long itemId) {
-        return itemRepository.findById(itemId).get();
-    }
-
     public void deleteItem(Long itemId) {
         itemRepository.deleteById(itemId);
     }
