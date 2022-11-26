@@ -1,14 +1,9 @@
 package com.steadykingdev.juncommerce.repository;
 
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.steadykingdev.juncommerce.dto.ItemDto;
-import com.steadykingdev.juncommerce.dto.ItemSearchCondition;
-import com.steadykingdev.juncommerce.dto.QItemDto;
-import com.steadykingdev.juncommerce.entity.Item;
+import com.steadykingdev.juncommerce.dto.*;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.steadykingdev.juncommerce.entity.QItem.item;
@@ -22,32 +17,25 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom{
 
 
     @Override
-    public List<ItemDto> search(ItemSearchCondition condition) {
+    public List<ItemResponseDto> search(ItemSearchCondition condition) {
         return null;
     }
 
-    public List<ItemDto> findAllItems() {
+    public List<ItemResponseDto> findAllItems() {
+
         return queryFactory
-                .select(new QItemDto(item.itemname))
+                .select(new QItemResponseDto(item.itemname))
                 .from(item)
                 .fetch();
     }
 
     @Override
-    public ItemDto findDtoById(Long id) {
+    public ItemResponseDto findItemDtoById(Long id) {
 
         return queryFactory
-                .select(new QItemDto(item.itemname))
+                .select(new QItemResponseDto(item.itemname))
                 .from(item)
                 .where(item.id.eq(id))
                 .fetchOne();
     }
-
-    @Override
-    public List<Item> findAll() {
-        List<String> a = new ArrayList<String>();
-        return null;
-    }
-
-
 }
