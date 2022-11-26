@@ -21,7 +21,7 @@ public class QuerydslTest {
     @Test
     public void contextLoads() throws Exception {
         //given
-        Item item = new Item("a");
+        Item item = new Item("a브랜드", "a이름", 10000);
         em.persist(item);
 
         JPAQueryFactory query = new JPAQueryFactory(em);
@@ -30,12 +30,12 @@ public class QuerydslTest {
         //when
         Item result = query
                 .selectFrom(qItem)
-                .where(qItem.itemName.eq("a"))
+                .where(qItem.itemname.eq("a"))
                 .fetchOne();
 
         //then
         Assertions.assertThat(result).isEqualTo(item);
-        Assertions.assertThat(result.getItemName()).isEqualTo(item.getItemName());
+        Assertions.assertThat(result.getItemname()).isEqualTo(item.getItemname());
     }
 
 }
