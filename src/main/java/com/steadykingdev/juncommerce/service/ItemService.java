@@ -1,7 +1,8 @@
 package com.steadykingdev.juncommerce.service;
 
-import com.steadykingdev.juncommerce.dto.ItemRequestDto;
+import com.steadykingdev.juncommerce.dto.SaveItemRequestDto;
 import com.steadykingdev.juncommerce.dto.ItemResponseDto;
+import com.steadykingdev.juncommerce.dto.UpdateItemRequestDto;
 import com.steadykingdev.juncommerce.entity.Item;
 import com.steadykingdev.juncommerce.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +27,17 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemResponseDto saveItem(ItemRequestDto itemDto) {
+    public Long saveItem(SaveItemRequestDto itemDto) {
         Item savedItem = itemRepository.save(itemDto.toEntity());
-        return ItemResponseDto.from(savedItem);
+        return savedItem.getId();
     }
+
+    @Transactional
+    public void updateItem(Long itemId, UpdateItemRequestDto ItemDto) {
+
+    }
+
+    @Transactional
     public void deleteItem(Long itemId) {
         itemRepository.deleteById(itemId);
     }
