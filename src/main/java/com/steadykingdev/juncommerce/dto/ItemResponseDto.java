@@ -16,15 +16,18 @@ public class ItemResponseDto {
     private String itemName;
     private int itemPrice;
 
+    private int stockQuantity;
+
     @QueryProjection
-    public ItemResponseDto(Long id, String brand, String itemName, int itemPrice) {
+    public ItemResponseDto(Long id, String brand, String itemName, int itemPrice, int stockQuantity) {
         this.id = id;
         this.brand = brand;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
+        this.stockQuantity = stockQuantity;
     }
 
     public static ItemResponseDto from(Item item) {
-        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemname(), item.getItemPrice());
+        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemname(), item.getItemPrice(), item.getStockQuantity());
     }
 }

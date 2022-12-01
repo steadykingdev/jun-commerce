@@ -24,7 +24,7 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom{
     public List<ItemResponseDto> findAllItems() {
 
         return queryFactory
-                .select(new QItemResponseDto(item.id, item.brand, item.itemname, item.itemPrice))
+                .select(new QItemResponseDto(item.id, item.brand, item.itemname, item.itemPrice, item.stockQuantity))
                 .from(item)
                 .fetch();
     }
@@ -33,7 +33,7 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom{
     public ItemResponseDto findItemDtoById(Long id) {
 
         return queryFactory
-                .select(new QItemResponseDto(item.id, item.brand, item.itemname, item.itemPrice))
+                .select(new QItemResponseDto(item.id, item.brand, item.itemname, item.itemPrice, item.stockQuantity))
                 .from(item)
                 .where(item.id.eq(id))
                 .fetchOne();
