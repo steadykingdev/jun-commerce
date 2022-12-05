@@ -31,6 +31,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1' // 외부 라이브러리 - p6spy
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}" // querydsl
+
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2' //swagger 기능 추가
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2' //swagger ui 추가
+
 	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}" // querydsl
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
