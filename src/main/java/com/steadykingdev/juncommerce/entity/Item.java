@@ -1,5 +1,6 @@
 package com.steadykingdev.juncommerce.entity;
 
+import com.steadykingdev.juncommerce.exception.OutOfStockException;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class Item {
     public void removeStock(int quantity) {
         int restStock = this.stockQuantity - quantity;
         if(restStock < 0) {
-            // throw
+            new OutOfStockException("상품의 재고가 부족합니다.(현재 재고 수량: " + this.stockQuantity + ")");
         }
         this.stockQuantity = restStock;
     }
