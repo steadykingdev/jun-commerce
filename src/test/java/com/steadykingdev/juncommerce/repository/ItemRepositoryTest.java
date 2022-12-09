@@ -18,7 +18,7 @@ public class ItemRepositoryTest {
     @Test
     public void testItem() throws Exception {
         //given
-        Item item = new Item("옷");
+        Item item = new Item("t브랜드", "t이름", 10000, 50);
 
         //when
         Item savedItem = itemRepository.save(item);
@@ -26,7 +26,7 @@ public class ItemRepositoryTest {
 
         //then
         assertThat(findItem.getId()).isEqualTo(item.getId());
-        assertThat(findItem.getItemName()).isEqualTo(item.getItemName());
+        assertThat(findItem.getItemname()).isEqualTo(item.getItemname());
         assertThat(findItem).isEqualTo(item);
     }
 

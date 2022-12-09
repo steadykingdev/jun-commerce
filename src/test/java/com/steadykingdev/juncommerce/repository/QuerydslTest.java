@@ -21,7 +21,7 @@ public class QuerydslTest {
     @Test
     public void contextLoads() throws Exception {
         //given
-        Item item = new Item("a브랜드", "a이름", 10000);
+        Item item = new Item("a브랜드", "a이름", 10000,50);
         em.persist(item);
 
         JPAQueryFactory query = new JPAQueryFactory(em);

@@ -19,8 +19,8 @@ class ItemTest {
 
     @BeforeEach
     public void before() {
-        Item itemA = new Item("t브랜드", "t이름", 10000);
-        Item itemB = new Item("b브랜드", "b이름", 30000);
+        Item itemA = new Item("t브랜드", "t이름", 10000, 50);
+        Item itemB = new Item("b브랜드", "b이름", 30000, 50);
         em.persist(itemA);
         em.persist(itemB);
     }

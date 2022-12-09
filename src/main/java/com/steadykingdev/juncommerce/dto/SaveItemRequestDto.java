@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -13,17 +14,17 @@ import javax.validation.constraints.NotNull;
 @Setter(AccessLevel.NONE)
 public class SaveItemRequestDto {
 
-    @NotNull(message = "브랜드를 입력하세요.")
+    @NotBlank(message = "브랜드를 입력하세요.")
     private String brand;
 
-    @NotNull(message = "상품명을 입력하세요.")
+    @NotBlank(message = "상품명을 입력하세요.")
     private String itemName;
 
     @NotNull(message = "가격을 입력하세요.")
-    private int itemPrice;
+    private Integer itemPrice;
 
     @NotNull(message = "재고 수량을 입력하세요.")
-    private int stockQuantity;
+    private Integer stockQuantity;
 
     public SaveItemRequestDto(Long id, String brand, String itemName, int itemPrice, int stockQuantity) {
         this.brand = brand;
