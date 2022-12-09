@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice()
 public class CommonExceptionHandler {
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, OutOfStockException.class})
     public ResponseEntity<ApiResponse<?>> handleValidationException(BindingResult bindingResult) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createFail(bindingResult));
     }
