@@ -17,14 +17,14 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
     private String brand;
-    private String itemname;
+    private String itemName;
     private int itemPrice;
 
     private int stockQuantity;
 
-    public Item(String brand, String itemname, int itemPrice, int stockQuantity) {
+    public Item(String brand, String itemName, int itemPrice, int stockQuantity) {
         this.brand = brand;
-        this.itemname = itemname;
+        this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.stockQuantity = stockQuantity;
     }
@@ -45,7 +45,7 @@ public class Item {
     public Item(Long id, String brand, String itemname, int itemPrice, int stockQuantity) {
         this.id = id;
         this.brand = brand;
-        this.itemname = itemname;
+        this.itemName = itemname;
         this.itemPrice = itemPrice;
         this.stockQuantity =stockQuantity;
     }

@@ -34,11 +34,11 @@ class ItemTest {
         Item findItem = queryFactory
                 .select(i)
                 .from(i)
-                .where(i.itemname.eq("t이름"))
+                .where(i.itemName.eq("t이름"))
                 .fetchOne();
 
         //then
-        Assertions.assertThat(findItem.getItemname()).isEqualTo("t");
+        Assertions.assertThat(findItem.getItemName()).isEqualTo("t");
     }
 
 

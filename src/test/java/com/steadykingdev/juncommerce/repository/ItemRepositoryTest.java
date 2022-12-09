@@ -26,7 +26,7 @@ public class ItemRepositoryTest {
 
         //then
         assertThat(findItem.getId()).isEqualTo(item.getId());
-        assertThat(findItem.getItemname()).isEqualTo(item.getItemname());
+        assertThat(findItem.getItemName()).isEqualTo(item.getItemName());
         assertThat(findItem).isEqualTo(item);
     }
 

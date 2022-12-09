@@ -30,12 +30,12 @@ public class QuerydslTest {
         //when
         Item result = query
                 .selectFrom(qItem)
-                .where(qItem.itemname.eq("a"))
+                .where(qItem.itemName.eq("a"))
                 .fetchOne();
 
         //then
         Assertions.assertThat(result).isEqualTo(item);
-        Assertions.assertThat(result.getItemname()).isEqualTo(item.getItemname());
+        Assertions.assertThat(result.getItemName()).isEqualTo(item.getItemName());
     }
 
 }

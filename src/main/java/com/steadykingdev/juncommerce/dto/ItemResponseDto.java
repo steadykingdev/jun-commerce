@@ -28,6 +28,6 @@ public class ItemResponseDto {
     }
 
     public static ItemResponseDto from(Item item) {
-        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemname(), item.getItemPrice(), item.getStockQuantity());
+        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemName(), item.getItemPrice(), item.getStockQuantity());
     }
 }
