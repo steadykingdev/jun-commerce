@@ -1,4 +1,4 @@
-package com.steadykingdev.juncommerce.entity;
+package com.steadykingdev.juncommerce.entity.item;
 
 import com.steadykingdev.juncommerce.exception.OutOfStockException;
 import lombok.AccessLevel;

@@ -1,9 +1,7 @@
 package com.steadykingdev.juncommerce.repository;
 
-import com.steadykingdev.juncommerce.entity.Item;
+import com.steadykingdev.juncommerce.entity.item.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long>, ItemRepositoryCustom {
 }

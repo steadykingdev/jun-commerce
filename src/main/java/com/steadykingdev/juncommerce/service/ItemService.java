@@ -3,7 +3,7 @@ package com.steadykingdev.juncommerce.service;
 import com.steadykingdev.juncommerce.dto.SaveItemRequestDto;
 import com.steadykingdev.juncommerce.dto.ItemResponseDto;
 import com.steadykingdev.juncommerce.dto.UpdateItemRequestDto;
-import com.steadykingdev.juncommerce.entity.Item;
+import com.steadykingdev.juncommerce.entity.item.Item;
 import com.steadykingdev.juncommerce.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

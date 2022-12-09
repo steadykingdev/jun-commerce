@@ -1,8 +1,8 @@
 package com.steadykingdev.juncommerce.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.steadykingdev.juncommerce.entity.Item;
-import com.steadykingdev.juncommerce.entity.QItem;
+import com.steadykingdev.juncommerce.entity.item.Item;
+import com.steadykingdev.juncommerce.entity.item.QItem;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

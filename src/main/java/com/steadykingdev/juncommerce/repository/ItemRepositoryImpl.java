@@ -6,7 +6,8 @@ import com.steadykingdev.juncommerce.dto.*;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.steadykingdev.juncommerce.entity.QItem.item;
+import static com.steadykingdev.juncommerce.entity.item.QItem.item;
+
 
 public class ItemRepositoryImpl implements ItemRepositoryCustom{
     private final JPAQueryFactory queryFactory;

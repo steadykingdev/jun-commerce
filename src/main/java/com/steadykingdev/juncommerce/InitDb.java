@@ -1,6 +1,6 @@
 package com.steadykingdev.juncommerce;
 
-import com.steadykingdev.juncommerce.entity.Item;
+import com.steadykingdev.juncommerce.entity.item.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

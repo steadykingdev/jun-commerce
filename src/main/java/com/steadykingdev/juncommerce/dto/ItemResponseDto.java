@@ -1,7 +1,7 @@
 package com.steadykingdev.juncommerce.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
-import com.steadykingdev.juncommerce.entity.Item;
+import com.steadykingdev.juncommerce.entity.item.Item;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;

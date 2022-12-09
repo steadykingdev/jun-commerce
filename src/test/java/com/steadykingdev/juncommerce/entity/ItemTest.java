@@ -1,6 +1,8 @@
 package com.steadykingdev.juncommerce.entity;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.steadykingdev.juncommerce.entity.item.Item;
+import com.steadykingdev.juncommerce.entity.item.QItem;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

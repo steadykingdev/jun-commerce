@@ -1,5 +1,7 @@
-package com.steadykingdev.juncommerce.entity;
+package com.steadykingdev.juncommerce.entity.member;
 
+import com.steadykingdev.juncommerce.entity.Address;
+import com.steadykingdev.juncommerce.entity.order.Order;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
