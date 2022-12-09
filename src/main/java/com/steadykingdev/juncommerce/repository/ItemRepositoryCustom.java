@@ -1,7 +1,7 @@
 package com.steadykingdev.juncommerce.repository;
 
-import com.steadykingdev.juncommerce.dto.ItemResponseDto;
-import com.steadykingdev.juncommerce.dto.ItemSearchCondition;
+import com.steadykingdev.juncommerce.dto.item.ItemResponseDto;
+import com.steadykingdev.juncommerce.dto.item.ItemSearchCondition;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.steadykingdev.juncommerce.dto;
+package com.steadykingdev.juncommerce.dto.item;
 
 import com.querydsl.core.annotations.QueryProjection;
 import com.steadykingdev.juncommerce.entity.item.Item;
@@ -27,7 +27,7 @@ public class ItemResponseDto {
         this.stockQuantity = stockQuantity;
     }
 
-    public static ItemResponseDto from(Item item) {
-        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemName(), item.getItemPrice(), item.getStockQuantity());
-    }
+//    public static ItemResponseDto from(Item item) {
+//        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemName(), item.getItemPrice(), item.getStockQuantity());
+//    }
 }

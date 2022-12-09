@@ -1,4 +1,4 @@
-package com.steadykingdev.juncommerce.dto;
+package com.steadykingdev.juncommerce.dto.item;
 
 import com.steadykingdev.juncommerce.entity.item.Item;
 import lombok.AccessLevel;

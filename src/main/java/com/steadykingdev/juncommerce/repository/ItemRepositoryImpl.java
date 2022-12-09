@@ -1,7 +1,9 @@
 package com.steadykingdev.juncommerce.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.steadykingdev.juncommerce.dto.*;
+import com.steadykingdev.juncommerce.dto.item.ItemResponseDto;
+import com.steadykingdev.juncommerce.dto.item.ItemSearchCondition;
+import com.steadykingdev.juncommerce.dto.item.QItemResponseDto;
 
 import javax.persistence.EntityManager;
 import java.util.List;
