@@ -7,12 +7,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 
-@RestControllerAdvice()
+import java.util.NoSuchElementException;
+
+@RestControllerAdvice
 public class CommonExceptionHandler {
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, OutOfStockException.class})
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<?>> handleValidationException(BindingResult bindingResult) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createFail(bindingResult));
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ApiResponse<?>> handleNoSuchElementException(NoSuchElementException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createError(ex.getMessage()));
     }
 }

@@ -29,6 +29,13 @@ public class Item {
         this.stockQuantity = stockQuantity;
     }
 
+    public void updateItem(String brand, String itemName, int itemPrice, int stockQuantity) {
+        this.brand = brand;
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+        this.stockQuantity = stockQuantity;
+    }
+
     public void addStock(int quantity) {
         this.stockQuantity += quantity;
     }

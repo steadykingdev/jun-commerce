@@ -3,14 +3,18 @@ package com.steadykingdev.juncommerce.controller;
 import com.steadykingdev.juncommerce.dto.ApiResponse;
 import com.steadykingdev.juncommerce.dto.item.ItemResponseDto;
 import com.steadykingdev.juncommerce.dto.item.SaveItemRequestDto;
+import com.steadykingdev.juncommerce.dto.item.UpdateItemRequestDto;
 import com.steadykingdev.juncommerce.service.ItemService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import static org.springframework.data.crossstore.ChangeSetPersister.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +34,7 @@ public class ItemController {
     @GetMapping("/api/item/{id}")
     public ApiResponse<ItemResponseDto> getItem(@PathVariable("id") Long id) {
         ItemResponseDto item = itemService.findOne(id);
+        System.out.println(item);
         return ApiResponse.createSuccess(item);
     }
 
@@ -37,6 +42,12 @@ public class ItemController {
     @PostMapping("/api/item/add")
     public ApiResponse addItem(@Valid @RequestBody SaveItemRequestDto saveItemRequestDto) {
         itemService.saveItem(saveItemRequestDto);
+        return ApiResponse.createSuccessWithNoContent();
+    }
+
+    @PostMapping("/api/item/update/{id}")
+    public ApiResponse editItem(@Valid @RequestBody UpdateItemRequestDto updateItemRequestDto, @PathVariable("id") Long id){
+        itemService.updateItem(id, updateItemRequestDto);
         return ApiResponse.createSuccessWithNoContent();
     }
 

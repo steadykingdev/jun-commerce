@@ -9,7 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -33,8 +36,9 @@ public class ItemService {
     }
 
     @Transactional
-    public void updateItem(Long itemId, UpdateItemRequestDto ItemDto) {
-
+    public void updateItem(Long itemId, UpdateItemRequestDto itemDto) {
+        Item item = itemRepository.findById(itemId).get();
+        item.updateItem(itemDto.getBrand(), itemDto.getItemName(), itemDto.getItemPrice(), itemDto.getStockQuantity());
     }
 
     @Transactional
