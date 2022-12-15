@@ -34,7 +34,6 @@ public class ItemController {
     @GetMapping("/api/item/{id}")
     public ApiResponse<ItemResponseDto> getItem(@PathVariable("id") Long id) {
         ItemResponseDto item = itemService.findOne(id);
-        System.out.println(item);
         return ApiResponse.createSuccess(item);
     }
 
@@ -45,10 +44,17 @@ public class ItemController {
         return ApiResponse.createSuccessWithNoContent();
     }
 
+    @ApiOperation(value = "상품 수정", notes = "상품을 수정한다")
     @PostMapping("/api/item/update/{id}")
-    public ApiResponse editItem(@Valid @RequestBody UpdateItemRequestDto updateItemRequestDto, @PathVariable("id") Long id){
+    public ApiResponse editItem(@Valid @RequestBody UpdateItemRequestDto updateItemRequestDto, @PathVariable("id") Long id) {
         itemService.updateItem(id, updateItemRequestDto);
         return ApiResponse.createSuccessWithNoContent();
     }
 
+    @ApiOperation(value = "상품 삭제", notes = "상품을 삭제한다")
+    @DeleteMapping("/api/item/delete/{id}")
+    public ApiResponse deleteItem(@PathVariable("id") Long id) {
+        itemService.deleteItem(id);
+        return ApiResponse.createSuccessWithNoContent();
+    }
 }
