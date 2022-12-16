@@ -1,4 +1,4 @@
-package com.steadykingdev.juncommerce.repository;
+package com.steadykingdev.juncommerce.repository.item;
 
 import com.steadykingdev.juncommerce.dto.item.ItemResponseDto;
 import com.steadykingdev.juncommerce.dto.item.ItemSearchCondition;

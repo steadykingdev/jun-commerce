@@ -1,6 +1,7 @@
 package com.steadykingdev.juncommerce.repository;
 
 import com.steadykingdev.juncommerce.entity.item.Item;
+import com.steadykingdev.juncommerce.repository.item.ItemRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

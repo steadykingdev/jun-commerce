@@ -4,16 +4,14 @@ import com.steadykingdev.juncommerce.dto.item.ItemResponseDto;
 import com.steadykingdev.juncommerce.dto.item.SaveItemRequestDto;
 import com.steadykingdev.juncommerce.dto.item.UpdateItemRequestDto;
 import com.steadykingdev.juncommerce.entity.item.Item;
-import com.steadykingdev.juncommerce.repository.ItemRepository;
+import com.steadykingdev.juncommerce.repository.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
