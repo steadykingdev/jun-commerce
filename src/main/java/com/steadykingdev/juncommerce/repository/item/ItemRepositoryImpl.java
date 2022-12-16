@@ -4,20 +4,16 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.steadykingdev.juncommerce.dto.item.ItemResponseDto;
 import com.steadykingdev.juncommerce.dto.item.ItemSearchCondition;
 import com.steadykingdev.juncommerce.dto.item.QItemResponseDto;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.steadykingdev.juncommerce.entity.item.QItem.item;
 
-
+@RequiredArgsConstructor
 public class ItemRepositoryImpl implements ItemRepositoryCustom{
     private final JPAQueryFactory queryFactory;
-
-    public ItemRepositoryImpl(EntityManager em) {
-        this.queryFactory = new JPAQueryFactory(em);
-    }
-
 
     @Override
     public List<ItemResponseDto> search(ItemSearchCondition condition) {
