@@ -9,6 +9,4 @@ public interface ItemRepositoryCustom {
 
     List<ItemResponseDto> search(ItemSearchCondition condition);
     List<ItemResponseDto> findAllItems();
-    ItemResponseDto findItemDtoById(Long id);
-
 }

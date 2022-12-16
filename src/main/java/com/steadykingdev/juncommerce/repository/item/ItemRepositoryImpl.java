@@ -31,14 +31,4 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom{
                 .from(item)
                 .fetch();
     }
-
-    @Override
-    public ItemResponseDto findItemDtoById(Long id) {
-
-        return queryFactory
-                .select(new QItemResponseDto(item.id, item.brand, item.itemName, item.itemPrice, item.stockQuantity))
-                .from(item)
-                .where(item.id.eq(id))
-                .fetchOne();
-    }
 }

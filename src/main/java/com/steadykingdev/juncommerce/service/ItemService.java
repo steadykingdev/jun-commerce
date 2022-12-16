@@ -25,7 +25,9 @@ public class ItemService {
     }
 
     public ItemResponseDto findOne(Long itemId) {
-        return itemRepository.findItemDtoById(itemId);
+        Item item = itemRepository.findById(itemId).orElseThrow(() -> new NoSuchElementException("상품이 존재하지 않습니다."));
+        ItemResponseDto itemDto = ItemResponseDto.from(item);
+        return itemDto;
     }
 
     @Transactional

@@ -27,7 +27,7 @@ public class ItemResponseDto {
         this.stockQuantity = stockQuantity;
     }
 
-//    public static ItemResponseDto from(Item item) {
-//        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemName(), item.getItemPrice(), item.getStockQuantity());
-//    }
+    public static ItemResponseDto from(Item item) {
+        return new ItemResponseDto(item.getId(), item.getBrand(), item.getItemName(), item.getItemPrice(), item.getStockQuantity());
+    }
 }
