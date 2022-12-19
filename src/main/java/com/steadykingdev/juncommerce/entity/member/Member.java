@@ -3,6 +3,7 @@ package com.steadykingdev.juncommerce.entity.member;
 import com.steadykingdev.juncommerce.entity.Address;
 import com.steadykingdev.juncommerce.entity.order.Order;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,11 +21,24 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String name;
+    private String loginId;
+
+    private String username;
+
+    private String password;
 
     @Embedded
     private Address address;
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+
+    @Builder
+    public Member(Long id, String loginId, String username, String password, Address address) {
+        this.id = id;
+        this.loginId = loginId;
+        this.username = username;
+        this.password = password;
+        this.address = address;
+    }
 }
