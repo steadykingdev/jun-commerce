@@ -40,4 +40,8 @@ public class OrderItem {
 
         return orderItem;
     }
+
+    public void cancel() {
+        getItem().addStock(count);
+    }
 }
