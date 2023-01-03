@@ -2,9 +2,13 @@ package com.steadykingdev.juncommerce.repository.member;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.steadykingdev.juncommerce.entity.member.Member;
-import com.steadykingdev.juncommerce.repository.item.ItemRepository;
 
 import javax.persistence.EntityManager;
+
+import java.util.List;
+import java.util.Optional;
+
+import static com.steadykingdev.juncommerce.entity.member.QMember.member;
 
 public class MemberRepositoryImpl implements MemberRepositoryCustom {
 
@@ -16,7 +20,9 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
 
 
     @Override
-    public Member findByLoginId(Long loginId) {
-        return null;
+    public List<Member> findByLoginId(String loginId) {
+        return queryFactory.selectFrom(member)
+                .where(member.loginId.eq(loginId))
+                .fetch();
     }
 }
