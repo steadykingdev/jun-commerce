@@ -23,4 +23,9 @@ public class CommonExceptionHandler {
     public ResponseEntity<ApiResponse<?>> handleNoSuchElementException(NoSuchElementException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createError(ex.getMessage()));
     }
+
+    @ExceptionHandler({UserNotFoundException.class})
+    public ResponseEntity<ApiResponse<?>> handleUserNotFoundException(UserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createError(ex.getMessage()));
+    }
 }
