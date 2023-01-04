@@ -7,10 +7,7 @@ import com.steadykingdev.juncommerce.service.MemberService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,5 +24,12 @@ public class MemberController {
     public ApiResponse<SaveMemberResponseDto> save(@Valid @RequestBody SaveMemberRequestDto saveMemberRequestDto) {
         Long memberId = memberService.addMember(saveMemberRequestDto);
         return ApiResponse.createSuccess(new SaveMemberResponseDto(memberId));
+    }
+
+    @ApiOperation(value = "회원삭제", notes = "회원을 삭제한다.")
+    @DeleteMapping("/delete/{id}")
+    public ApiResponse delete(@PathVariable("id") Long id) {
+        memberService.deleteMember(id);
+        return ApiResponse.createSuccessWithNoContent();
     }
 }

@@ -20,7 +20,7 @@ public class CommonExceptionHandler {
     }
 
     @ExceptionHandler({NoSuchElementException.class, IllegalStateException.class})
-    public ResponseEntity<ApiResponse<?>> handleNoSuchElementException(NoSuchElementException ex) {
+    public ResponseEntity<ApiResponse<?>> handleNoSuchElementException(Exception ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.createError(ex.getMessage()));
     }
 

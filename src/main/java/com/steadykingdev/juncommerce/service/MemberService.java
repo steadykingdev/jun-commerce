@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -22,6 +21,7 @@ public class MemberService {
         return memberExistence(memberId);
     }
 
+    @Transactional
     public Long addMember(SaveMemberRequestDto memberDto) {
         Member member = memberDto.toEntity();
         validateDuplicateMember(member);
@@ -29,6 +29,7 @@ public class MemberService {
         return member.getId();
     }
 
+    @Transactional
     public void deleteMember(Long memberId) {
         memberExistence(memberId);
         memberRepository.deleteById(memberId);
@@ -36,6 +37,8 @@ public class MemberService {
 
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByLoginId(member.getLoginId());
+        System.out.println("member id = " + member.getLoginId());
+        System.out.println("findmember = " + findMembers);
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
