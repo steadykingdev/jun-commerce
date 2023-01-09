@@ -1,5 +1,6 @@
 package com.steadykingdev.juncommerce.entity.item;
 
+import com.steadykingdev.juncommerce.entity.order.OrderItem;
 import com.steadykingdev.juncommerce.exception.OutOfStockException;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -7,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,6 +22,9 @@ public class Item {
     private String brand;
     private String itemName;
     private int itemPrice;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     private int stockQuantity;
 

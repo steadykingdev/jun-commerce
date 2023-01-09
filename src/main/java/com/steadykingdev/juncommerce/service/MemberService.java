@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional(readOnly = true)
@@ -45,7 +46,7 @@ public class MemberService {
     }
 
     private Member memberExistence(Long memberId) {
-        return memberRepository.findById(memberId).orElseThrow(() -> new UserNotFoundException("회원이 존재하지 않습니다."));
+        return memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException("회원이 존재하지 않습니다."));
     }
 
 }
