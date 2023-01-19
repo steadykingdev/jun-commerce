@@ -1,4 +1,4 @@
-package com.steadykingdev.juncommerce.dto.login;
+package com.steadykingdev.juncommerce.dto.member;
 
 import lombok.Data;
 

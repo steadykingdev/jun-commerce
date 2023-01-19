@@ -2,7 +2,6 @@ package com.steadykingdev.juncommerce.service;
 
 import com.steadykingdev.juncommerce.dto.member.SaveMemberRequestDto;
 import com.steadykingdev.juncommerce.entity.member.Member;
-import com.steadykingdev.juncommerce.exception.UserNotFoundException;
 import com.steadykingdev.juncommerce.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,10 +35,10 @@ public class MemberService {
         memberRepository.deleteById(memberId);
     }
 
+
+
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByLoginId(member.getLoginId());
-        System.out.println("member id = " + member.getLoginId());
-        System.out.println("findmember = " + findMembers);
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }

@@ -16,43 +16,44 @@ import java.util.List;
 
 import static org.springframework.data.crossstore.ChangeSetPersister.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@Slf4j
+@RequestMapping("/api/item")
 public class ItemController {
 
     private final ItemService itemService;
 
     @ApiOperation(value = "상품 리스트 조회", notes = "모든 상품을 조회한다")
-    @GetMapping("/api/items")
+    @GetMapping("/all")
     public ApiResponse<List<ItemResponseDto>> getItems() {
         List<ItemResponseDto> items = itemService.findItems();
         return ApiResponse.createSuccess(items);
     }
 
     @ApiOperation(value = "상품 조회", notes = "하나의 상품을 조회한다")
-    @GetMapping("/api/item/{id}")
+    @GetMapping("/{id}")
     public ApiResponse<ItemResponseDto> getItem(@PathVariable("id") Long id) {
         ItemResponseDto item = itemService.findOne(id);
         return ApiResponse.createSuccess(item);
     }
 
     @ApiOperation(value = "상품 등록", notes = "상품을 등록한다")
-    @PostMapping("/api/item/add")
+    @PostMapping("/add")
     public ApiResponse addItem(@Valid @RequestBody SaveItemRequestDto saveItemRequestDto) {
         itemService.saveItem(saveItemRequestDto);
         return ApiResponse.createSuccessWithNoContent();
     }
 
     @ApiOperation(value = "상품 수정", notes = "상품을 수정한다")
-    @PostMapping("/api/item/update/{id}")
+    @PostMapping("/update/{id}")
     public ApiResponse editItem(@Valid @RequestBody UpdateItemRequestDto updateItemRequestDto, @PathVariable("id") Long id) {
         itemService.updateItem(id, updateItemRequestDto);
         return ApiResponse.createSuccessWithNoContent();
     }
 
     @ApiOperation(value = "상품 삭제", notes = "상품을 삭제한다")
-    @DeleteMapping("/api/item/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ApiResponse deleteItem(@PathVariable("id") Long id) {
         itemService.deleteItem(id);
         return ApiResponse.createSuccessWithNoContent();

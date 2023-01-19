@@ -1,6 +1,7 @@
 package com.steadykingdev.juncommerce.controller;
 
 import com.steadykingdev.juncommerce.dto.ApiResponse;
+import com.steadykingdev.juncommerce.dto.member.LoginRequestDto;
 import com.steadykingdev.juncommerce.dto.member.SaveMemberRequestDto;
 import com.steadykingdev.juncommerce.dto.member.SaveMemberResponseDto;
 import com.steadykingdev.juncommerce.service.MemberService;
@@ -30,6 +31,13 @@ public class MemberController {
     @DeleteMapping("/delete/{id}")
     public ApiResponse delete(@PathVariable("id") Long id) {
         memberService.deleteMember(id);
+        return ApiResponse.createSuccessWithNoContent();
+    }
+
+    @ApiOperation(value = "로그인", notes = "로그인을 한다.")
+    @PostMapping("/login")
+    public ApiResponse login(@RequestBody LoginRequestDto loginRequestDto) {
+        
         return ApiResponse.createSuccessWithNoContent();
     }
 }
