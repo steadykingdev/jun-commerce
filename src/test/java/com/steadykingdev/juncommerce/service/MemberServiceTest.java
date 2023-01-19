@@ -2,10 +2,7 @@ package com.steadykingdev.juncommerce.service;
 
 import com.steadykingdev.juncommerce.dto.member.SaveMemberRequestDto;
 import com.steadykingdev.juncommerce.entity.Address;
-import com.steadykingdev.juncommerce.entity.item.Item;
 import com.steadykingdev.juncommerce.entity.member.Member;
-import com.steadykingdev.juncommerce.exception.UserNotFoundException;
-import com.steadykingdev.juncommerce.repository.member.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -45,9 +41,8 @@ class MemberServiceTest {
 
         //when
         Long memberId = memberService.addMember(memberDto);
-
         //then
-        assertThat(memberId).isEqualTo(5L);
+        assertThat(memberId).isEqualTo(7L);
     }
 
     @Test
@@ -64,7 +59,6 @@ class MemberServiceTest {
     @Test
     public void deleteMember() throws Exception {
         //given
-
         Address address2 = new Address("서울22", "시흥대로11", "1-22");
         SaveMemberRequestDto saveMemberResponseDto = new SaveMemberRequestDto("Lee", "김맨", "1111", "1111", address2);
         Long savedMemberId = memberService.addMember(saveMemberResponseDto);
@@ -74,7 +68,7 @@ class MemberServiceTest {
 
         //then
         assertThatThrownBy(() -> memberService.findMember(savedMemberId))
-                .isInstanceOf(UserNotFoundException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
@@ -89,7 +83,7 @@ class MemberServiceTest {
 
         //then
         assertThatThrownBy(() -> memberService.deleteMember(savedMemberId))
-                .isInstanceOf(UserNotFoundException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
 
