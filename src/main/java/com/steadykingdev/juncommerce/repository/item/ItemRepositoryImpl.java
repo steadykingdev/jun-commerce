@@ -2,7 +2,6 @@ package com.steadykingdev.juncommerce.repository.item;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.steadykingdev.juncommerce.dto.item.ItemResponseDto;
-import com.steadykingdev.juncommerce.dto.item.ItemSearchCondition;
 import com.steadykingdev.juncommerce.dto.item.QItemResponseDto;
 
 import javax.persistence.EntityManager;
@@ -16,11 +15,6 @@ public class ItemRepositoryImpl implements ItemRepositoryCustom{
 
     public ItemRepositoryImpl(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
-    }
-
-    @Override
-    public List<ItemResponseDto> search(ItemSearchCondition condition) {
-        return null;
     }
 
     public List<ItemResponseDto> findAllItems() {
