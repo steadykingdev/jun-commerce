@@ -11,7 +11,7 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
-@Setter
+@Setter(value = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
@@ -22,15 +22,19 @@ public class OrderItem {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "item_id")
-    private Item item;
+    private Item item;      // 주문 상품
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Order order;    // 주문
 
-    private int orderPrice;
+    private int orderPrice; // 주문 가격
 
-    private int count;
+    private int count;      // 주문 수량
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
         OrderItem orderItem = new OrderItem();
@@ -38,10 +42,15 @@ public class OrderItem {
         orderItem.setOrderPrice(orderPrice);
         orderItem.setCount(count);
 
+        item.removeStock(count);
         return orderItem;
     }
 
     public void cancel() {
         getItem().addStock(count);
+    }
+
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
     }
 }

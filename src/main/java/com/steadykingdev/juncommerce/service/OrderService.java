@@ -1,6 +1,8 @@
 package com.steadykingdev.juncommerce.service;
 
 import com.steadykingdev.juncommerce.dto.order.OrderResponseDto;
+import com.steadykingdev.juncommerce.entity.DeliveryStatus;
+import com.steadykingdev.juncommerce.entity.delivery.Delivery;
 import com.steadykingdev.juncommerce.entity.item.Item;
 import com.steadykingdev.juncommerce.entity.member.Member;
 import com.steadykingdev.juncommerce.entity.order.Order;
@@ -27,12 +29,20 @@ public class OrderService {
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
 
+        // 엔티티 조회
         Member member = memberRepository.findById(memberId).get();
         Item item = itemRepository.findById(itemId).get();
 
+        // 배송정보 생성
+        Delivery delivery = new Delivery();
+        delivery.setAddress(member.getAddress());
+        delivery.setStatus(DeliveryStatus.READY);
+
+        // 주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getItemPrice(), count);
 
-        Order order = Order.createOrder(member, orderItem);
+        // 주문 생성
+        Order order = Order.createOrder(member, delivery, orderItem);
 
         orderRepository.save(order);
         return order.getId();

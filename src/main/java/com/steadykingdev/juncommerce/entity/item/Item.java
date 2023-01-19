@@ -49,7 +49,7 @@ public class Item {
     public void removeStock(int quantity) {
         int restStock = this.stockQuantity - quantity;
         if(restStock < 0) {
-            new OutOfStockException("상품의 재고가 부족합니다.(현재 재고 수량: " + this.stockQuantity + ")");
+            throw new OutOfStockException("상품의 재고가 부족합니다.(현재 재고 수량: " + this.stockQuantity + ")");
         }
         this.stockQuantity = restStock;
     }
