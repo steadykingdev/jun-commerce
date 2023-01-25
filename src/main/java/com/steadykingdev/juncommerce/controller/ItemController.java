@@ -25,7 +25,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @ApiOperation(value = "상품 리스트 조회", notes = "모든 상품을 조회한다")
-    @GetMapping("/all")
+    @GetMapping("/list")
     public ApiResponse<List<ItemResponseDto>> getItems() {
         List<ItemResponseDto> items = itemService.findItems();
         return ApiResponse.createSuccess(items);

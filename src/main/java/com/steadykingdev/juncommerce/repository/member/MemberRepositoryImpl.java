@@ -1,7 +1,10 @@
 package com.steadykingdev.juncommerce.repository.member;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.steadykingdev.juncommerce.dto.member.MemberResponseDto;
+import com.steadykingdev.juncommerce.dto.member.QMemberResponseDto;
 import com.steadykingdev.juncommerce.entity.member.Member;
+import com.steadykingdev.juncommerce.entity.member.QMember;
 
 import javax.persistence.EntityManager;
 
@@ -23,6 +26,14 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
     public List<Member> findByLoginId(String loginId) {
         return queryFactory.selectFrom(member)
                 .where(member.loginId.eq(loginId))
+                .fetch();
+    }
+
+    @Override
+    public List<MemberResponseDto> findAllMembers() {
+        return queryFactory
+                .select(new QMemberResponseDto(member.id, member.loginId, member.username, member.address))
+                .from(member)
                 .fetch();
     }
 }

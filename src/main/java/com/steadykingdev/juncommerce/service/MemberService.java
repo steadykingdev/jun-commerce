@@ -1,5 +1,6 @@
 package com.steadykingdev.juncommerce.service;
 
+import com.steadykingdev.juncommerce.dto.member.MemberResponseDto;
 import com.steadykingdev.juncommerce.dto.member.SaveMemberRequestDto;
 import com.steadykingdev.juncommerce.entity.member.Member;
 import com.steadykingdev.juncommerce.repository.member.MemberRepository;
@@ -21,10 +22,14 @@ public class MemberService {
         return memberExistence(memberId);
     }
 
+    public List<MemberResponseDto> findMembers() {
+        return memberRepository.findAllMembers();
+    }
+
     @Transactional
     public Long addMember(SaveMemberRequestDto memberDto) {
+        validateMember(memberDto);
         Member member = memberDto.toEntity();
-        validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
     }
@@ -37,10 +42,12 @@ public class MemberService {
 
 
 
-    private void validateDuplicateMember(Member member) {
+    private void validateMember(SaveMemberRequestDto member) {
         List<Member> findMembers = memberRepository.findByLoginId(member.getLoginId());
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
+        } else if (!member.getPassword().equals(member.getPasswordCheck())) {
+            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
         }
     }
 
