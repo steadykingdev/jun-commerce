@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Setter(AccessLevel.NONE)
-public class SaveMemberRequestDto {
+public class MemberDto {
 
     @NotBlank(message = "아이디를 입력하세요")
     private String loginId;
@@ -33,7 +33,7 @@ public class SaveMemberRequestDto {
     @Embedded
     private Address address;
 
-    public SaveMemberRequestDto(String loginId, String username, String password, String passwordCheck, Address address) {
+    public MemberDto(String loginId, String username, String password, String passwordCheck, Address address) {
         this.loginId = loginId;
         this.username = username;
         this.password = password;

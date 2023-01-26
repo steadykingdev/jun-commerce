@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,17 +31,24 @@ public class Member {
     @Embedded
     private Address address;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "member_id", referencedColumnName = "member_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")}
+    )
+    private Set<Authority> authorities;
+
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
     @Builder
-    public Member(Long id, String loginId, String username, String password, Address address) {
+    public Member(Long id, String loginId, String username, String password, Set<Authority> authorities, Address address) {
         this.id = id;
         this.loginId = loginId;
         this.username = username;
         this.password = password;
         this.address = address;
     }
-
 
 }

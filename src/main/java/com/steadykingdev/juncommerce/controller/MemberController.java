@@ -3,9 +3,9 @@ package com.steadykingdev.juncommerce.controller;
 import com.steadykingdev.juncommerce.dto.ApiResponse;
 import com.steadykingdev.juncommerce.dto.member.LoginRequestDto;
 import com.steadykingdev.juncommerce.dto.member.MemberResponseDto;
-import com.steadykingdev.juncommerce.dto.member.SaveMemberRequestDto;
+import com.steadykingdev.juncommerce.dto.member.MemberDto;
 import com.steadykingdev.juncommerce.dto.member.SaveMemberResponseDto;
-import com.steadykingdev.juncommerce.service.MemberService;
+import com.steadykingdev.juncommerce.service.MemberService2;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/api/member")
 public class MemberController {
 
-    private final MemberService memberService;
+    private final MemberService2 memberService;
 
     @ApiOperation(value = "회원 조회", notes = "모든 회원을 조회한다.")
     @GetMapping("/list")
@@ -31,7 +31,7 @@ public class MemberController {
 
     @ApiOperation(value = "회원가입", notes = "회원가입을 한다")
     @PostMapping("/add")
-    public ApiResponse<SaveMemberResponseDto> save(@Valid @RequestBody SaveMemberRequestDto saveMemberRequestDto) {
+    public ApiResponse<SaveMemberResponseDto> save(@Valid @RequestBody MemberDto saveMemberRequestDto) {
         Long memberId = memberService.addMember(saveMemberRequestDto);
         return ApiResponse.createSuccess(new SaveMemberResponseDto(memberId));
     }

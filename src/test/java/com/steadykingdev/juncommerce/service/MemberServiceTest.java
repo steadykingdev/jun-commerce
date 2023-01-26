@@ -1,6 +1,6 @@
 package com.steadykingdev.juncommerce.service;
 
-import com.steadykingdev.juncommerce.dto.member.SaveMemberRequestDto;
+import com.steadykingdev.juncommerce.dto.member.MemberDto;
 import com.steadykingdev.juncommerce.entity.Address;
 import com.steadykingdev.juncommerce.entity.member.Member;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.*;
 class MemberServiceTest {
 
     @Autowired
-    MemberService memberService;
+    MemberService2 memberService;
 
     @PersistenceContext
     EntityManager em;
@@ -37,7 +37,7 @@ class MemberServiceTest {
     public void addMember() throws Exception {
         //given
         Address address = new Address("서울시", "시흥대로 23-7", "202호");
-        SaveMemberRequestDto memberDto = new SaveMemberRequestDto("GOAT", "만준", "test12!@", "test12!@", address);
+        MemberDto memberDto = new MemberDto("GOAT", "만준", "test12!@", "test12!@", address);
 
         //when
         Long memberId = memberService.addMember(memberDto);
@@ -49,7 +49,7 @@ class MemberServiceTest {
     public void addMemberDuplicateException() throws Exception {
 
         Address address2 = new Address("서울22", "시흥대로11", "1-22");
-        SaveMemberRequestDto saveMemberResponseDto = new SaveMemberRequestDto("Kim", "김맨", "1111", "1111", address2);
+        MemberDto saveMemberResponseDto = new MemberDto("Kim", "김맨", "1111", "1111", address2);
 
         assertThatThrownBy(() -> memberService.addMember(saveMemberResponseDto))
                 .isInstanceOf(IllegalStateException.class)
@@ -60,7 +60,7 @@ class MemberServiceTest {
     public void deleteMember() throws Exception {
         //given
         Address address2 = new Address("서울22", "시흥대로11", "1-22");
-        SaveMemberRequestDto saveMemberResponseDto = new SaveMemberRequestDto("Lee", "김맨", "1111", "1111", address2);
+        MemberDto saveMemberResponseDto = new MemberDto("Lee", "김맨", "1111", "1111", address2);
         Long savedMemberId = memberService.addMember(saveMemberResponseDto);
 
         //when
@@ -75,7 +75,7 @@ class MemberServiceTest {
     public void deleteMemberNotFoundExceptionTest() throws Exception {
         //given
         Address address2 = new Address("서울22", "시흥대로11", "1-22");
-        SaveMemberRequestDto saveMemberResponseDto = new SaveMemberRequestDto("Lee", "김맨", "1111", "1111", address2);
+        MemberDto saveMemberResponseDto = new MemberDto("Lee", "김맨", "1111", "1111", address2);
         Long savedMemberId = memberService.addMember(saveMemberResponseDto);
 
         //when

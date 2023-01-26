@@ -1,15 +1,17 @@
 package com.steadykingdev.juncommerce.service;
 
-import com.steadykingdev.juncommerce.dto.member.MemberResponseDto;
-import com.steadykingdev.juncommerce.dto.member.SaveMemberRequestDto;
+import com.steadykingdev.juncommerce.dto.member.MemberDto;
+import com.steadykingdev.juncommerce.entity.member.Authority;
 import com.steadykingdev.juncommerce.entity.member.Member;
 import com.steadykingdev.juncommerce.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.Collections;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -18,35 +20,36 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Member findMember(Long memberId) {
-        return memberExistence(memberId);
-    }
-
-    public List<MemberResponseDto> findMembers() {
-        return memberRepository.findAllMembers();
-    }
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Long addMember(SaveMemberRequestDto memberDto) {
+    public void signup(MemberDto memberDto) {
         validateMember(memberDto);
-        Member member = memberDto.toEntity();
+
+        Authority authority = Authority.builder()
+                .authorityName("ROLE_USER")
+                .build();
+
+        Member member = Member.builder()
+                .loginId(memberDto.getLoginId())
+                .username(memberDto.getUsername())
+                .password(passwordEncoder.encode(memberDto.getPassword()))
+                .authorities(Collections.singleton(authority))
+                .address(memberDto.getAddress())
+                .build();
+
         memberRepository.save(member);
-        return member.getId();
     }
 
-    @Transactional
-    public void deleteMember(Long memberId) {
-        memberExistence(memberId);
-        memberRepository.deleteById(memberId);
+    public Optional<Member> getUserWithAuthorities(String loginId) {
+        Member member = memberRepository.findOneWithAuthoritiesByLoginId(loginId).orElse(null);
+        
     }
 
-
-
-    private void validateMember(SaveMemberRequestDto member) {
-        List<Member> findMembers = memberRepository.findByLoginId(member.getLoginId());
-        if (!findMembers.isEmpty()) {
+    private void validateMember(MemberDto memberDto) {
+        if (memberRepository.findOneWithAuthoritiesByLoginId(memberDto.getLoginId()).orElse(null) != null) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
-        } else if (!member.getPassword().equals(member.getPasswordCheck())) {
+        } else if (!memberDto.getPassword().equals(memberDto.getPasswordCheck())) {
             throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
         }
     }
@@ -54,5 +57,4 @@ public class MemberService {
     private Member memberExistence(Long memberId) {
         return memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException("회원이 존재하지 않습니다."));
     }
-
 }
