@@ -1,6 +1,7 @@
 package com.steadykingdev.juncommerce.controller;
 
 import com.steadykingdev.juncommerce.dto.ApiResponse;
+import com.steadykingdev.juncommerce.dto.order.OrderRequestDto;
 import com.steadykingdev.juncommerce.service.OrderService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +21,9 @@ public class OrderController {
 
     @ApiOperation(value = "주문하기", notes = "주문을 생성한다.")
     @PostMapping("/add")
-    public ApiResponse addOrder(@RequestBody Long memberId, @RequestBody Long itemId, @RequestBody int count) {
+    public ApiResponse addOrder(@RequestBody OrderRequestDto orderRequestDto) {
 
-        orderService.order(memberId, itemId, count);
+        orderService.order(orderRequestDto.getMemberId(), orderRequestDto.getItemId(), orderRequestDto.getCount());
         return ApiResponse.createSuccessWithNoContent();
     }
 
