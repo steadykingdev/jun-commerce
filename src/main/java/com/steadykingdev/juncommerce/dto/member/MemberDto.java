@@ -30,7 +30,6 @@ public class MemberDto {
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$", message = "8자 이상 16자 이하의 숫자, 영문자, 특수문자를 포함한 비밀번호를 입력해주세요.")
     private String passwordCheck;
 
-    @Embedded
     private Address address;
 
     public MemberDto(String loginId, String username, String password, String passwordCheck, Address address) {
