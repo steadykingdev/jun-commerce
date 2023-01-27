@@ -1,6 +1,7 @@
 package com.steadykingdev.juncommerce;
 
 import com.steadykingdev.juncommerce.entity.item.Item;
+import com.steadykingdev.juncommerce.entity.member.Authority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,16 @@ public class InitDb {
             em.persist(item1);
             em.persist(item2);
             em.persist(item3);
+
+            Authority authority1 = Authority.builder()
+                    .authorityName("ROLE_USER")
+                    .build();
+            Authority authority2 = Authority.builder()
+                    .authorityName("ROLE_ADMIN")
+                    .build();
+
+            em.persist(authority1);
+            em.persist(authority2);
         }
     }
 }
