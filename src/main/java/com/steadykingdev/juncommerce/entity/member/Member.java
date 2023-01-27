@@ -48,6 +48,7 @@ public class Member {
         this.loginId = loginId;
         this.username = username;
         this.password = password;
+        this.authorities = authorities;
         this.address = address;
     }
 

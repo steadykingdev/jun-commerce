@@ -1,6 +1,7 @@
 package com.steadykingdev.juncommerce.dto.member;
 
 import com.steadykingdev.juncommerce.entity.Address;
+import com.steadykingdev.juncommerce.entity.member.Authority;
 import com.steadykingdev.juncommerce.entity.member.Member;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -10,6 +11,7 @@ import lombok.Setter;
 import javax.persistence.Embedded;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -32,11 +34,14 @@ public class MemberDto {
 
     private Address address;
 
-    public MemberDto(String loginId, String username, String password, String passwordCheck, Address address) {
+    private Set<Authority> authorities;
+
+    public MemberDto(String loginId, String username, String password, String passwordCheck, Set<Authority> authorities, Address address) {
         this.loginId = loginId;
         this.username = username;
         this.password = password;
         this.passwordCheck = passwordCheck;
+        this.authorities = authorities;
         this.address = address;
     }
 
