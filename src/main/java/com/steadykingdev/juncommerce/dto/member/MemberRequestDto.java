@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Embedded;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.Set;
@@ -16,7 +15,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Setter(AccessLevel.NONE)
-public class MemberDto {
+public class MemberRequestDto {
 
     @NotBlank(message = "아이디를 입력하세요")
     private String loginId;
@@ -34,14 +33,11 @@ public class MemberDto {
 
     private Address address;
 
-    private Set<Authority> authorities;
-
-    public MemberDto(String loginId, String username, String password, String passwordCheck, Set<Authority> authorities, Address address) {
+    public MemberRequestDto(String loginId, String username, String password, String passwordCheck, Address address) {
         this.loginId = loginId;
         this.username = username;
         this.password = password;
         this.passwordCheck = passwordCheck;
-        this.authorities = authorities;
         this.address = address;
     }
 
