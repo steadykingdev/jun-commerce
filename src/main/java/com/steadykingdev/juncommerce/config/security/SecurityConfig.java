@@ -4,6 +4,7 @@ import com.steadykingdev.juncommerce.jwt.JwtAccessDeniedHandler;
 import com.steadykingdev.juncommerce.jwt.JwtAuthenticationEntryPoint;
 import com.steadykingdev.juncommerce.jwt.JwtSecurityConfig;
 import com.steadykingdev.juncommerce.jwt.TokenProvider;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -34,7 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers(
-                        "/favicon.ico"
+                        "/favicon.ico",
+                        "/swagger-resources/**",
+                        "/swagger-ui.html",
+                        "/v2/api-docs",
+                        "/webjars/**"
                 );
     }
 
@@ -54,8 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests() // HttpServletRequest를 사용하는 요청들에 대한 접근 제한을 설정
-                //.antMatchers("").permitAll()
-                //.anyRequest().authenticated() // 나머지 요청은 인증받아야함.
+                .antMatchers("/api/member/add").permitAll()
+                .anyRequest().authenticated() // 나머지 요청은 인증받아야함.
 
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider)); // JwtFilter를 addFilterBefore로 등록한 config 클래스도 적용.
