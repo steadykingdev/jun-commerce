@@ -1,6 +1,7 @@
 package com.steadykingdev.juncommerce.service;
 
-import com.steadykingdev.juncommerce.dto.member.MemberDto;
+import com.steadykingdev.juncommerce.dto.member.MemberRequestDto;
+import com.steadykingdev.juncommerce.dto.member.MemberResponseDto;
 import com.steadykingdev.juncommerce.entity.member.Authority;
 import com.steadykingdev.juncommerce.entity.member.Member;
 import com.steadykingdev.juncommerce.repository.member.MemberRepository;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -23,7 +24,7 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void signup(MemberDto memberDto) {
+    public void signup(MemberRequestDto memberDto) {
         validateMember(memberDto);
 
         Authority authority = Authority.builder()
@@ -41,11 +42,29 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    public List<MemberResponseDto> getMemberList() {
+        List<Member> members = memberRepository.findAll();
+
+        return members.stream()
+                .map(m -> MemberResponseDto.fromEntity(m))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deleteMember(long id) {
+
+        if (memberRepository.existsById(id)) {
+            memberRepository.deleteById(id);
+        }
+    }
+
     public Member getMemberWithAuthorities(String loginId) {
+
         return memberRepository.findOneWithAuthoritiesByLoginId(loginId).orElseThrow(() -> new RuntimeException("회원이 존재하지 않습니다."));
     }
 
-    private void validateMember(MemberDto memberDto) {
+    private void validateMember(MemberRequestDto memberDto) {
+
         if (memberRepository.findOneWithAuthoritiesByLoginId(memberDto.getLoginId()).orElse(null) != null) {
             throw new RuntimeException("이미 존재하는 회원입니다.");
         } else if (!memberDto.getPassword().equals(memberDto.getPasswordCheck())) {
@@ -53,7 +72,8 @@ public class MemberService {
         }
     }
 
-    private Member memberExistence(Long memberId) {
+    private Member memberExistence(long memberId) {
+
         return memberRepository.findById(memberId).orElseThrow(() -> new RuntimeException("회원이 존재하지 않습니다."));
     }
 
