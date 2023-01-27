@@ -41,20 +41,20 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    public Optional<Member> getUserWithAuthorities(String loginId) {
-        Member member = memberRepository.findOneWithAuthoritiesByLoginId(loginId).orElse(null);
-        
+    public Member getMemberWithAuthorities(String loginId) {
+        return memberRepository.findOneWithAuthoritiesByLoginId(loginId).orElseThrow(() -> new RuntimeException("회원이 존재하지 않습니다."));
     }
 
     private void validateMember(MemberDto memberDto) {
         if (memberRepository.findOneWithAuthoritiesByLoginId(memberDto.getLoginId()).orElse(null) != null) {
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
+            throw new RuntimeException("이미 존재하는 회원입니다.");
         } else if (!memberDto.getPassword().equals(memberDto.getPasswordCheck())) {
-            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
+            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
         }
     }
 
     private Member memberExistence(Long memberId) {
-        return memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException("회원이 존재하지 않습니다."));
+        return memberRepository.findById(memberId).orElseThrow(() -> new RuntimeException("회원이 존재하지 않습니다."));
     }
+
 }
