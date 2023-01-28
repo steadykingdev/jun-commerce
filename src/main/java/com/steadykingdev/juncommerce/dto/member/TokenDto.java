@@ -1,5 +1,8 @@
 package com.steadykingdev.juncommerce.dto.member;
 
+import lombok.Getter;
+
+@Getter
 public class TokenDto {
 
     private String token;
