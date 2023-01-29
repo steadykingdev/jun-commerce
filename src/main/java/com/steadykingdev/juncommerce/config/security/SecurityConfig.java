@@ -60,7 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests() // HttpServletRequest를 사용하는 요청들에 대한 접근 제한을 설정
                 .antMatchers("/api/member/add").permitAll()
+                .antMatchers("/api/member/add/admin").permitAll()
                 .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/item/*").permitAll()
                 .anyRequest().authenticated() // 나머지 요청은 인증받아야함.
 
                 .and()

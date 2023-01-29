@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,6 +38,34 @@ public class MemberService {
                 .username(memberDto.getUsername())
                 .password(passwordEncoder.encode(memberDto.getPassword()))
                 .authorities(Collections.singleton(authority))
+                .address(memberDto.getAddress())
+                .build();
+
+        memberRepository.save(member);
+    }
+
+    @Transactional
+    public void signupAdmin(MemberRequestDto memberDto) {
+
+        Set<Authority> authoritySet = new HashSet<>();
+
+        validateMember(memberDto);
+
+        Authority authority1 = Authority.builder()
+                .authorityName("ROLE_ADMIN")
+                .build();
+
+        Authority authority2 = Authority.builder()
+                .authorityName("ROLE_USER")
+                .build();
+        authoritySet.add(authority1);
+        authoritySet.add(authority2);
+
+        Member member = Member.builder()
+                .loginId(memberDto.getLoginId())
+                .username(memberDto.getUsername())
+                .password(passwordEncoder.encode(memberDto.getPassword()))
+                .authorities(authoritySet)
                 .address(memberDto.getAddress())
                 .build();
 

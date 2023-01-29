@@ -8,6 +8,7 @@ import com.steadykingdev.juncommerce.service.MemberService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,12 +29,21 @@ public class MemberController {
         return ApiResponse.createSuccessWithNoContent();
     }
 
+    @ApiOperation(value = "어드민 회원가입", notes = "어드민 회원가입을 한다")
+    @PostMapping("/add/admin")
+    public ApiResponse saveAdmin(@Valid @RequestBody MemberRequestDto memberRequestDto) {
+        memberService.signupAdmin(memberRequestDto);
+        return ApiResponse.createSuccessWithNoContent();
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation(value = "회원 조회", notes = "모든 회원을 조회한다.")
     @GetMapping("/list")
     public ApiResponse<List<MemberResponseDto>> getMembers() {
         return ApiResponse.createSuccess(memberService.getMemberList());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @ApiOperation(value = "회원삭제", notes = "회원을 삭제한다.")
     @DeleteMapping("/delete/{id}")
     public ApiResponse delete(@PathVariable("id") long id) {
