@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -38,6 +39,7 @@ public class ItemController {
         return ApiResponse.createSuccess(item);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation(value = "상품 등록", notes = "상품을 등록한다")
     @PostMapping("/add")
     public ApiResponse addItem(@Valid @RequestBody SaveItemRequestDto saveItemRequestDto) {
@@ -45,6 +47,7 @@ public class ItemController {
         return ApiResponse.createSuccessWithNoContent();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation(value = "상품 수정", notes = "상품을 수정한다")
     @PostMapping("/update/{id}")
     public ApiResponse editItem(@Valid @RequestBody UpdateItemRequestDto updateItemRequestDto, @PathVariable("id") Long id) {
@@ -52,6 +55,7 @@ public class ItemController {
         return ApiResponse.createSuccessWithNoContent();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ApiOperation(value = "상품 삭제", notes = "상품을 삭제한다")
     @DeleteMapping("/delete/{id}")
     public ApiResponse deleteItem(@PathVariable("id") Long id) {
