@@ -6,6 +6,7 @@ import com.steadykingdev.juncommerce.service.OrderService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    @PreAuthorize("hasAnyRole('USER')")
     @ApiOperation(value = "주문하기", notes = "주문을 생성한다.")
     @PostMapping("/add")
     public ApiResponse addOrder(@RequestBody OrderRequestDto orderRequestDto) {
