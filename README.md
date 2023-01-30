@@ -50,3 +50,5 @@
     - 주문 삭제
         - 자신의 주문 삭제 (User) (아직 구현x)
         - 특정 유저의 주문 삭제 (Admin) (아직 구현x)
+        
+[Member](https://www.notion.so/5dd1b1d88db347ecbb0105c08d0e37fa)
