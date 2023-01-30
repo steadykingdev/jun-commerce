@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Data
@@ -18,9 +19,11 @@ import java.util.Set;
 public class MemberRequestDto {
 
     @NotBlank(message = "아이디를 입력하세요")
+    @Size(min = 2, max = 15, message = "아이디는 2 ~ 15자로 입력해주세요.")
     private String loginId;
 
     @NotBlank(message = "이름을 입력하세요")
+    @Size(min = 2, max = 15, message = "닉네임은 2 ~ 15자로 입력해주세요.")
     private String username;
 
     @NotBlank(message = "비밀번호를 입력하세요")

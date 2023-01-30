@@ -8,11 +8,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(
+        name = "LOGIN_ID_UNIQUE",
+        columnNames = {"login_id"}
+)})
 @Getter
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 public class Member {
@@ -22,8 +27,11 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    @Size(min = 2, max = 15)
+    @Column(name = "login_id")
     private String loginId;
 
+    @Size(min = 2, max = 15)
     private String username;
 
     private String password;
