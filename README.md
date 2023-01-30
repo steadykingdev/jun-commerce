@@ -56,9 +56,15 @@
 ### DB 설계
         
 ![스크린샷 2023-01-30 오후 3 13 45](https://user-images.githubusercontent.com/110039142/215401912-2ac90553-fc25-4499-9f36-9da577a1bd75.png)
+
 ![스크린샷 2023-01-30 오후 3 34 32](https://user-images.githubusercontent.com/110039142/215405060-9dcb5a2f-2b9e-44ef-bbaa-2c00bf4e318d.png)
+
 ![스크린샷 2023-01-30 오후 3 34 28](https://user-images.githubusercontent.com/110039142/215405097-f33cda25-b4e7-4026-9045-dafcb60bd017.png)
+
 ![스크린샷 2023-01-30 오후 3 33 59](https://user-images.githubusercontent.com/110039142/215405271-72f178a6-dcfe-4190-bc74-4ce6f0fef366.png)
+
 ![스크린샷 2023-01-30 오후 3 34 06](https://user-images.githubusercontent.com/110039142/215405341-8f0cc7f8-1484-4515-8124-fbca482c8bab.png)
+
 ![스크린샷 2023-01-30 오후 3 34 14](https://user-images.githubusercontent.com/110039142/215405416-13db76cc-899e-4e90-a36d-361864b97236.png)
+
 ![스크린샷 2023-01-30 오후 3 34 21](https://user-images.githubusercontent.com/110039142/215405438-df1c4fe0-8ea8-446d-94e7-abd00ff0969c.png)
