@@ -68,3 +68,13 @@
 ![스크린샷 2023-01-30 오후 3 34 14](https://user-images.githubusercontent.com/110039142/215405416-13db76cc-899e-4e90-a36d-361864b97236.png)
 
 ![스크린샷 2023-01-30 오후 3 34 21](https://user-images.githubusercontent.com/110039142/215405438-df1c4fe0-8ea8-446d-94e7-abd00ff0969c.png)
+
+---
+
+### API 설계
+
+![스크린샷 2023-01-30 오후 4 11 34](https://user-images.githubusercontent.com/110039142/215411123-87118a62-b56c-46ce-9b84-485a752529a7.png)
+
+![스크린샷 2023-01-30 오후 4 11 28](https://user-images.githubusercontent.com/110039142/215411161-4f864be5-906a-4247-a42a-af2b6dd760c8.png)
+
+![스크린샷 2023-01-30 오후 4 11 41](https://user-images.githubusercontent.com/110039142/215411194-86afcee3-e3a5-4bd7-b76c-611ef1e43eb8.png)
